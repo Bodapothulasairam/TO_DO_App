@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <h1 class='Label'>Sign In</h1>
+        <!-- orientation="vertical" -->
+        <mat-stepper linear #stepper>
+            <mat-step [stepControl]="firstFormGroup" Editable>
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Fill out your email ID</ng-template>
+                    <mat-form-field>
+                        <mat-label>E-mail</mat-label>
+                        <input matInput formControlName="firstCtrl" placeholder="Ex: abcd@efg.com" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button color="primary" matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup"Editable>
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Create a Password</ng-template>
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="SecondCtrl" placeholder="Ex: Aa546*" required>
+                    </mat-form-field>
+                    <mat-error *ngIf="Invalid">
+                        Invalid mail id or password please try again!
+                    </mat-error>
+                    <div>
+                        <button mat-button color="primary" matStepperPrevious>Back</button>
+                        <button mat-button color="primary" (click)="SignIn()">Sign In</button>
+                    </div>
+                </form>
+            </mat-step>
+        </mat-stepper>
+        <h4>Don't have an account Click <a routerLink="/SignUp">Here!</a> to Sign-Up</h4>
+    </div>
+</div>

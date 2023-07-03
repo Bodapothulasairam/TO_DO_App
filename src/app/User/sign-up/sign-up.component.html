@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row" Id="SignUpForm" *ngIf="UserSignedIn==false">
+        <h1 class='Label'>Sign Up</h1>
+        <!-- orientation="vertical" Linear-->
+        <mat-stepper linear #stepper>
+            <mat-step [stepControl]="firstFormGroup" Editable>
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Fill out your first name</ng-template>
+                    <mat-form-field>
+                        <mat-label>First name</mat-label>
+                        <input matInput placeholder="First name" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-raised-button  matStepperNext >Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup" Editable>
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Fill out your last name</ng-template>
+                    <mat-form-field>
+                        <mat-label>Last name</mat-label>
+                        <input matInput formControlName="SecondCtrl" placeholder="Last Name" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-raised-button matStepperPrevious>Back</button>
+                        <button mat-raised-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup" Editable>
+                <form [formGroup]="thirdFormGroup">
+                    <ng-template matStepLabel>Fill out your email ID</ng-template>
+                    <mat-form-field>
+                        <mat-label>E-mail</mat-label>
+                        <input matInput formControlName="ThirdCtrl"  placeholder="Ex: abcd@efg.com" required>
+                    </mat-form-field>
+                    <mat-error *ngIf="thirdFormGroup.invalid" style="padding-bottom: 15px; color: white;">
+                        Must be a valid email address
+                    </mat-error>
+                    <div>
+                        <button mat-raised-button matStepperPrevious>Back</button>
+                        <button mat-raised-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="fourthFormGroup" Editable>
+                <form [formGroup]="fourthFormGroup">
+                    <ng-template matStepLabel>Create a Password</ng-template>
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="FourthCtrl" placeholder="Ex: Aa546*" required>
+                    </mat-form-field>
+                    <mat-error *ngIf="fourthFormGroup.invalid" style="padding-bottom: 15px; color: white;">
+                        Password should contain atleast 1 Uppercase, 1 lowercase, 1 sepical character, 1 number, 6-30 length
+                    </mat-error>
+                    <div>
+                        <button mat-raised-button matStepperPrevious>Back</button>
+                        <button mat-raised-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>please click on Signup button Once you are done with filing.</p>
+                <div>
+                    <button mat-raised-button matStepperPrevious>Back</button>
+                    <button mat-raised-button (click)="LodeUp()">SignUp</button>
+                    <button mat-raised-button (click)="stepper.reset()">Reset</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+        <h4>Already have an account Click <a routerLink="/Signin" style="color: white;">Here!</a> to Sign-in</h4>
+    </div>
+    <div class="row" Id="Spinner" *ngIf="loader==true">
+        <h1 style="padding-left: 46%; font-family: 'Caprasimo', cursive;">Signing you in.....</h1>
+        <mat-spinner style="width: 30%;"></mat-spinner>
+    </div>
+</div>
